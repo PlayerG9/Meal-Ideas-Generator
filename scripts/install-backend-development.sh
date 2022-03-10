@@ -1,5 +1,5 @@
 #!/usr/bin/sh
-cd "$(dirname "$0")/src/backend"
+cd "$(dirname "$0")/../src/backend"
 echo "CWD: $(pwd)"
 
 if [ ! -f "./.venv/bin/python" ]  # test if virtual environment exists
@@ -12,7 +12,7 @@ fi
 
 echo "Updating/Installing pip-packages"
 ./.venv/bin/pip install --isolated --upgrade pip
-./.venv/bin/pip install --isolated -r ./requirements.txt
+./.venv/bin/pip install --isolated -r ./requirements-development.txt
 
 echo
 echo "Project is ready to go"
