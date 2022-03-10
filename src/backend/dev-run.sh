@@ -2,4 +2,4 @@
 cd "$(dirname "$0")"
 echo "CWD: $(pwd)"
 
-uvicorn server:api --reload
+./.venv/bin/python3 -m uvicorn server:api --reload
