@@ -1,0 +1,54 @@
+/* this file contains generell css for the whole project */
+
+/* used to prevent text-selection */
+.no-select {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+
+.link-like {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    
+    /* don't ask why, but without this, a button has the font of MS Shell Dlg 2 which is nowhere specified*/
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    font-size: inherit;
+    /*input has OS specific font-family*/
+    color: #069;
+    text-decoration: none;
+    cursor: pointer;
+}
+.link-like:hover {
+    text-decoration: underline;
+}
+
+
+/* 
+<div class='align-items'>
+    <div class='left'>...</div>
+    <div class='void'>...</div>
+    <div class='right'>...</div>
+    <div class='right'>...</div>
+</div>
+ */
+ .align-items {
+    width: 100%;
+    display: flex;
+}
+.align-items > .left {
+    margin-right: 10px;
+}
+.align-items > .void {
+    flex: auto;
+}
+.align-items > .right {
+    margin-left: 10px;
+}

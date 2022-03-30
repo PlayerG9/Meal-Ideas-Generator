@@ -1,0 +1,6 @@
+.page-not-found {
+    text-align: center;
+}
+.page-not-found > .options > * {
+    margin: 10px;
+}
