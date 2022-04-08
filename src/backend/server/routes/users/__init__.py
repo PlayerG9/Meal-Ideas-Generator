@@ -5,7 +5,7 @@ r"""
 from fastapi import APIRouter
 from fastapi import Path, Query, HTTPException, status
 
-from ..api_models import *
+from .models import ResponseUser
 
 
 router = APIRouter(
@@ -15,7 +15,7 @@ router = APIRouter(
 
 
 @router.get(
-    '/user/{userId}',
+    '/{userId}',
     name="Get User by ID",
     response_model=ResponseUser
 )

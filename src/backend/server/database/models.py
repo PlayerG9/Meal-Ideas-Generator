@@ -1,38 +1,54 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, JSON, Date
+# -*- coding=utf-8 -*-
+r"""
+
+"""
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, JSON, Date, BLOB
 # from sqlalchemy.orm import relationship
 
-from .database import Base as BaseModel
+from . import DatabaseModelClass as DatabaseModel
 
 
-class User(BaseModel):
-    __tablename__ = 'user'
+class User(DatabaseModel):
+    __tablename__ = 'users'
     
     id = Column(Integer, primary_key=True, index=True)
     email = Column(String, unique=True, index=True)
-    hashed_password = Column(String)
+    hashed_password = Column(String, index=True)
     
     joined = Column(Date)
 
 
-class MealIdea(BaseModel):
-    __tablename__ = 'meal_idea'
+class MealIdea(DatabaseModel):
+    __tablename__ = 'meal_ideas'
     
     id = Column(Integer, primary_key=True, index=True)
     
-    creator = Column(Integer, ForeignKey('user.id'))
+    creator_id = Column(Integer, ForeignKey('users.id'))
     private = Column(Boolean)
     
     steps = Column(JSON)
+    
+    image_id = Column(Integer, ForeignKey('images.id'))
 
 
-class Ingredients(BaseModel):
+class Image(DatabaseModel):
+    __tablename__ = 'images'
+    
+    id = Column(Integer, primary_key=True, index=True)
+    
+    filename = Column(String)
+    
+    binary = Column(BLOB)
+
+
+class Ingredients(DatabaseModel):
     __tablename__ = 'ingredients'
     
     id = Column(Integer, primary_key=True, index=True)
 
 
-class Ingredient(BaseModel):
-    __tablename__ = 'ingredient'
+class Ingredient(DatabaseModel):
+    __tablename__ = 'ingredient_names'
     
     id = Column(Integer, primary_key=True, index=True)
     

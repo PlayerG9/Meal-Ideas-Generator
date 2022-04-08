@@ -5,7 +5,10 @@ r"""
 from fastapi import APIRouter
 from fastapi import Path, Query, HTTPException, status
 
-from ..api_models import *
+from .models import (
+    ResponseMealIdea,
+    ResponseManyMealIdeas
+)
 
 
 router = APIRouter(

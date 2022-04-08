@@ -5,7 +5,10 @@ r"""
 from pydantic import BaseModel
 from typing import List
 
-from .user import ResponseUser
+
+class SimpleUser(BaseModel):
+    id: int
+    username: str
 
 
 class Ingredient(BaseModel):
@@ -15,9 +18,10 @@ class Ingredient(BaseModel):
 
 
 class ResponseMealIdea(BaseModel):
-    creator: ResponseUser
+    creator: SimpleUser
     steps: List[str]
     ingredients: List[Ingredient]
+    image_id: int  # maybe image_url
 
 
 class ResponseManyMealIdeas(BaseModel):
