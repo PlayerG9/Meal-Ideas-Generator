@@ -23,12 +23,16 @@ api = fastapi.FastAPI(
 
 
 # dependency
-def getDatabase():
+@fastapi.Depends
+def Database() -> Session:
     db: Session = SessionLocal()
     try:
         yield db
     finally:
         db.close()
+
+
+Database: Session
 
 
 api.add_middleware(
@@ -39,10 +43,14 @@ api.add_middleware(
     allow_headers=['*']
 )
 
+from .routes import auth
 from .routes import users
 from .routes import images
 from .routes import meals
+from .routes import test
 
+api.include_router(auth.router)
 api.include_router(users.router)
 api.include_router(images.router)
 api.include_router(meals.router)
+api.include_router(test.router)

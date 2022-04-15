@@ -7,8 +7,8 @@ from fastapi import Path, Depends, Response, HTTPException, status
 # from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 
-from ... import getDatabase
-from .crud import getImage
+from ... import Database
+from . import crud
 
 
 router = APIRouter(
@@ -30,9 +30,9 @@ router = APIRouter(
 )
 async def getImageById(
         imageId: int = Path(..., title="The ID of the requested Image"),
-        database: Session = Depends(getDatabase)
+        database: Session = Database
 ):
-    image = getImage(
+    image = crud.getImage(
         database=database,
         image_id=imageId
     )

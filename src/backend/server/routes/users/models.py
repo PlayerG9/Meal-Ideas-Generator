@@ -3,23 +3,28 @@ r"""
 
 """
 from pydantic import BaseModel
-from typing import Optional, List
+# from typing import Optional, List
+from pydantic import EmailStr
 from datetime import date
 
 
+# class RequestUser(BaseModel):
+#     id: int
+#     username: str
+#     email: str
+#     password: str
+
+
 class CreateUser(BaseModel):
-    pass
-
-
-class RequestUser(BaseModel):
-    id: int
     username: str
-    email: str
+    email: EmailStr
     password: str
 
 
 class ResponseUser(BaseModel):
     id: int
     username: str
-    email: str
     joined: date
+    
+    class Config:
+        orm_mode = True

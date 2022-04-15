@@ -3,7 +3,7 @@ r"""
 
 """
 from fastapi import APIRouter
-from fastapi import Path, Query, HTTPException, status
+from fastapi import Path, Query, UploadFile, File, HTTPException, status
 
 from .models import (
     ResponseMealIdea,
@@ -44,5 +44,28 @@ async def getMealByQuery(q: str = Query(..., title="Query to search for")):
 )
 async def getMealById(
         mealId: int = Path(..., title="The ID of the requested Meal")
+):
+    pass
+
+
+#
+#
+#
+
+from pydantic import BaseModel
+from typing import List
+
+
+class RequestCreateMeal(BaseModel):
+    title: str
+    steps: List[str]
+
+
+@router.post(
+    '/create'
+)
+def postCreateMeal(
+    data: RequestCreateMeal,
+    image: UploadFile = File(...)
 ):
     pass
